@@ -32,4 +32,15 @@ else
     }' fs/readdir.c
 fi
 
+# fix: zeromount_stat_hook dereferences filename->name without checking
+# IS_ERR(filename). vfs_statx can be called with ERR_PTR(-ENOENT) from
+# getname_flags, causing a kernel oops at vfs_statx+0x6c.
+echo "==> applying zeromount stat ERR_PTR fix..."
+FIX_STAT="/build/repo/patches/fix-zeromount-stat-errptr.patch"
+if [[ -f "$FIX_STAT" ]]; then
+    patch -p1 -F3 --no-backup-if-mismatch < "$FIX_STAT"
+else
+    sed -i 's/if (zm_is_recursive()) return -ENOENT;/if (zm_is_recursive() || IS_ERR_OR_NULL(filename)) return -ENOENT;/' fs/stat.c
+fi
+
 echo "==> zeromount applied"
