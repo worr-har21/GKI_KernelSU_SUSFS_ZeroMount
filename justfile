@@ -63,7 +63,7 @@ apply-susfs:
 
 # apply zeromount patch from super-builders
 apply-zeromount:
-    {{PODMAN}} -v "$(pwd)/src:/build/src:Z" -v "$(pwd)/tmp:/build/tmp:ro,Z" -v "$(pwd)/scripts:/build/scripts:ro,Z" -w /build/src/common {{CONTAINER_IMAGE}} /build/scripts/apply-zeromount.sh "{{ANDROID_VERSION}}" "{{KERNEL_VERSION}}"
+    {{PODMAN}} -v "$(pwd):/build/repo:ro,Z" -v "$(pwd)/src:/build/src:Z" -v "$(pwd)/tmp:/build/tmp:ro,Z" -v "$(pwd)/scripts:/build/scripts:ro,Z" -w /build/src/common {{CONTAINER_IMAGE}} /build/scripts/apply-zeromount.sh "{{ANDROID_VERSION}}" "{{KERNEL_VERSION}}"
 
 # apply zram lz4 patches (lz4 upgrade + lz4kd)
 apply-zram:
