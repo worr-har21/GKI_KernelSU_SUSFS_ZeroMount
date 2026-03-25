@@ -16,7 +16,7 @@ KERNEL_BRANCH := ANDROID_VERSION + "-" + KERNEL_VERSION + "-" + OS_PATCH_LEVEL
 default: build-all
 
 # full build pipeline
-build-all: build-container fetch-deps sync-kernel setup-ksu apply-susfs apply-zeromount apply-zram configure build-kernel package
+build-all: build-container fetch-deps sync-kernel setup-ksu apply-susfs apply-zeromount apply-zram apply-extra-patches configure build-kernel package
 
 # clean all build artefacts and sources
 clean:
@@ -68,6 +68,10 @@ apply-zeromount:
 # apply zram lz4 patches (lz4 upgrade + lz4kd)
 apply-zram:
     {{PODMAN}} -v "$(pwd)/src:/build/src:Z" -v "$(pwd)/tmp:/build/tmp:ro,Z" -v "$(pwd)/scripts:/build/scripts:ro,Z" -w /build/src/common {{CONTAINER_IMAGE}} /build/scripts/apply-zram.sh "{{KERNEL_VERSION}}"
+
+# apply custom extra GKI patches
+apply-extra-patches:
+    {{PODMAN}} -v "$(pwd):/build/repo:ro,Z" -v "$(pwd)/src:/build/src:Z" -v "$(pwd)/scripts:/build/scripts:ro,Z" -w /build/src/common {{CONTAINER_IMAGE}} /build/scripts/apply-extra-patches.sh "{{KERNEL_VERSION}}"
 
 # configure kernel defconfig and build flags
 configure:
