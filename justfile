@@ -32,9 +32,9 @@ fetch-deps:
     set -euo pipefail
     mkdir -p src/ out/ tmp/
     echo "==> cloning GKI_KernelSU_SUSFS config repo..."
-    [[ -d tmp/gki-config ]] || git clone --depth 1 git@github.com:zzh20188/GKI_KernelSU_SUSFS.git tmp/gki-config
+    [[ -d tmp/gki-config ]] || git clone --depth 1 https://github.com/zzh20188/GKI_KernelSU_SUSFS.git tmp/gki-config
     echo "==> cloning Super-Builders (for zeromount patch)..."
-    [[ -d tmp/super-builders ]] || git clone --depth 1 git@github.com:Enginex0/Super-Builders.git tmp/super-builders
+    [[ -d tmp/super-builders ]] || git clone --depth 1 https://github.com/Enginex0/Super-Builders.git tmp/super-builders
     echo "==> cloning SUSFS..."
     [[ -d tmp/susfs4ksu ]] || git clone --depth 1 https://gitlab.com/simonpunk/susfs4ksu.git -b "gki-{{ANDROID_VERSION}}-{{KERNEL_VERSION}}" tmp/susfs4ksu
     echo "==> cloning AnyKernel3..."
