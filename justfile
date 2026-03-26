@@ -1,8 +1,8 @@
 # === configuration ===
-ANDROID_VERSION := env_var_or_default("ANDROID_VERSION", "android14")
-KERNEL_VERSION := env_var_or_default("KERNEL_VERSION", "6.1")
-SUB_LEVEL := env_var_or_default("SUB_LEVEL", "X")
-OS_PATCH_LEVEL := env_var_or_default("OS_PATCH_LEVEL", "lts")
+ANDROID_VERSION := env_var_or_default("ANDROID_VERSION", "android1")
+KERNEL_VERSION := env_var_or_default("KERNEL_VERSION", "6.6")
+SUB_LEVEL := env_var_or_default("SUB_LEVEL", "102")
+OS_PATCH_LEVEL := env_var_or_default("OS_PATCH_LEVEL", "2026-01")
 KSU_VARIANT := env_var_or_default("KSU_VARIANT", "ReSukiSU")
 
 # container
