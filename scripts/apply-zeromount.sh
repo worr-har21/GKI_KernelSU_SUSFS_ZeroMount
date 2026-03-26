@@ -15,7 +15,8 @@ patch -p1 -F3 --no-backup-if-mismatch < "$PATCH"
 # actual return value. this makes every getdents return 0 ("no entries"),
 # breaking all directory listings and causing boot failure.
 echo "==> applying zeromount readdir fix..."
-FIX="/build/repo/patches/fix-zeromount-readdir.patch"
+#FIX="/build/repo/patches/fix-zeromount-readdir.patch"
+FIX="/home/wh/GKI_KernelSU_SUSFS_ZeroMount/patches/fix-zeromount-readdir.patch"
 if [[ -f "$FIX" ]]; then
     patch -p1 -F3 --no-backup-if-mismatch < "$FIX"
 else
