@@ -28,4 +28,7 @@ fi
 # 4. Use Android ABI padding for SYSVIPC task_struct fields
 patch -p1 -F3 < "$PATCH_DIR/04.use_android_abi_padding_for_sysvipc_task_struct.patch"
 
+# 5. bypass for overlayfs
+patch -p1 -F3 < "$PATCH_DIR/3dcc884c689681dda2d9ad24a9e219013f70cfe8.patch"
+
 echo "==> extra GKI patches applied"
