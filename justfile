@@ -1,5 +1,5 @@
 # === configuration ===
-ANDROID_VERSION := env_var_or_default("ANDROID_VERSION", "android1")
+ANDROID_VERSION := env_var_or_default("ANDROID_VERSION", "android15")
 KERNEL_VERSION := env_var_or_default("KERNEL_VERSION", "6.6")
 SUB_LEVEL := env_var_or_default("SUB_LEVEL", "102")
 OS_PATCH_LEVEL := env_var_or_default("OS_PATCH_LEVEL", "2026-01")
