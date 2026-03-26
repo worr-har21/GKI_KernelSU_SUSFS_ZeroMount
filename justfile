@@ -101,7 +101,7 @@ package:
     rm -rf "$STAGING"
     cp -r tmp/anykernel3 "$STAGING"
     cp "$IMAGE" "$STAGING/Image"
-    sed -i 's/^ramdisk_compression=.*/ramdisk_compression=xz/' "$STAGING/anykernel.sh"
+    sed -i 's/^ramdisk_compression=.*/ramdisk_compression=lz4/' "$STAGING/anykernel.sh"
     sed -i 's/^kernel\.string=.*/kernel.string=GKI_KernelSU_SUSFS_ZeroMount/' "$STAGING/anykernel.sh"
     SUBLEVEL="{{SUB_LEVEL}}"
     if [[ -f src/common/Makefile ]]; then
