@@ -15,8 +15,8 @@ patch -p1 -F3 --no-backup-if-mismatch < "$PATCH"
 # actual return value. this makes every getdents return 0 ("no entries"),
 # breaking all directory listings and causing boot failure.
 echo "==> applying zeromount readdir fix..."
-FIX="/build/repo/patches/fix-zeromount-readdir.patch"
-#FIX="/home/wh/GKI_KernelSU_SUSFS_ZeroMount/patches/fix.patch"
+#FIX="/build/repo/patches/fix-zeromount-readdir.patch"
+FIX="/home/wh/GKI_KernelSU_SUSFS_ZeroMount/patches/fix-zeromount-readdir.patch"
 if [[ -f "$FIX" ]]; then
     patch -p1 -F3 --no-backup-if-mismatch < "$FIX"
 else
@@ -36,13 +36,10 @@ fi
 # fix: zeromount_stat_hook dereferences filename->name without checking
 # IS_ERR(filename). vfs_statx can be called with ERR_PTR(-ENOENT) from
 # getname_flags, causing a kernel oops at vfs_statx+0x6c.
-
 #echo "==> applying zeromount stat ERR_PTR fix..."
 #FIX_STAT="/build/repo/patches/fix-zeromount-stat-errptr.patch"
-#if [[ -f "$FIX_STAT" ]]; then
 #    patch -p1 -F3 --no-backup-if-mismatch < "$FIX_STAT"
-#else
-#    sed -i 's/if (zm_is_recursive()) return -ENOENT;/if (zm_is_recursive() || IS_ERR_OR_NULL(filename)) return -ENOENT;/' fs/stat.c
+#else#
 #fi
 
 echo "==> zeromount applied"
