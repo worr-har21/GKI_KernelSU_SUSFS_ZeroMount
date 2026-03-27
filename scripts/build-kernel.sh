@@ -18,6 +18,7 @@ echo "==> building kernel (this will take a while)..."
 tools/bazel build \
     --config=fast \
     --lto=thin \
+    --verbose_failures \
     $FRAG_FLAG \
     //common:kernel_aarch64_dist
 
